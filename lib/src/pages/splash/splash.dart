@@ -26,12 +26,12 @@ class _SplashState extends State<Splash> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              PlaceholderLines(
-                count: 4,
+              const PlaceholderLines(
+                count: 7,
                 animate: true,
                 align: TextAlign.center,
-                lineHeight: 8,
-                color: Theme.of(context).primaryColor,
+                lineHeight: 10,
+                color: Colors.purple,
               ),
               const SizedBox(height: 20),
               Text(

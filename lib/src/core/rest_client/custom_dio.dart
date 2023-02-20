@@ -1,3 +1,4 @@
+import 'package:dio/browser.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
@@ -22,6 +23,8 @@ class CustomDio extends DioForNative {
       ),
     );
     _authInterceptor = AuthInterceptor();
+
+    httpClientAdapter = BrowserHttpClientAdapter();
   }
 
   late AuthInterceptor _authInterceptor;

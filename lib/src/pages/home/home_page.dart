@@ -44,6 +44,15 @@ class _HomePageState extends State<HomePage> {
         title: const Text('ChatGPT'),
         centerTitle: false,
         automaticallyImplyLeading: !isDesktop,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: Icon(
+              Icons.person_pin,
+              size: 40,
+            ),
+          ),
+        ],
       ),
       drawer: !isDesktop ? const CustomDrawer() : null,
       body: SizedBox.expand(
@@ -112,12 +121,9 @@ class _HomePageState extends State<HomePage> {
 
         setState(() {
           _messages.add(chatResponse);
+          _isTyping = false;
 
           _scrollDown();
-        });
-
-        setState(() {
-          _isTyping = false;
         });
       } catch (e) {
         setState(() {

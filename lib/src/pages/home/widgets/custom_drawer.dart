@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/ui/responsive.dart';
+
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isDesktop = Responsive.isDesktop(context);
+
     return NavigationDrawer(
       onDestinationSelected: (index) {
         if (index == 0) {
-          Navigator.of(context).pop();
+          if (!isDesktop) Navigator.of(context).pop();
           Navigator.of(context).pushNamed('/config');
         }
       },

@@ -19,6 +19,17 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Configurações'),
+        centerTitle: false,
+        automaticallyImplyLeading: true,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: Icon(
+              Icons.person_pin,
+              size: 40,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
