@@ -3,8 +3,6 @@ import 'package:chatgpt_front/src/core/stores/app_store.dart';
 import 'package:chatgpt_front/src/pages/configuration/configuration_page.dart';
 import 'package:chatgpt_front/src/pages/home/home_module.dart';
 import 'package:chatgpt_front/src/pages/splash/splash.dart';
-import 'package:chatgpt_front/src/repositories/chat/chat_repository.dart';
-import 'package:chatgpt_front/src/repositories/chat/chat_repository_impl.dart';
 import 'package:chatgpt_front/src/repositories/configuration/configuration_repository.dart';
 import 'package:chatgpt_front/src/repositories/configuration/configuration_repository_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';

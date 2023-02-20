@@ -1,15 +1,5 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class Env {
-  static Env? _instance;
-  Env._();
-
-  static Env get instance {
-    _instance ??= Env._();
-    return _instance!;
-  }
-
-  String? operator [](String key) => dotenv.env[key];
-
-  Future<void> load() => dotenv.load();
+  static const backendBaseUrl = 'https://api.openai.com/v1';
+  static const backendToken =
+      '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';
 }

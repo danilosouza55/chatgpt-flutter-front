@@ -10,12 +10,8 @@ class AuthInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final accessToken = Env.instance['backend_token'];
-
-    if (accessToken != null) {
-      options.headers['Authorization'] = 'Bearer $accessToken';
-      options.headers['Content-Type'] = 'application/json';
-    }
+    options.headers['Authorization'] = 'Bearer ${Env.backendToken}';
+    options.headers['Content-Type'] = 'application/json';
 
     return handler.next(options);
   }
