@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   final _messages = <ChatModel>[];
   final _scrollCtrl = ScrollController();
   bool _isTyping = false;
+  bool _isCarregandoTela = true;
 
   void _scrollDown() {
     Future.delayed(const Duration(milliseconds: 200), () {
@@ -42,14 +43,23 @@ class _HomePageState extends State<HomePage> {
     _messages.add(
       ChatModel(
         message:
-            'Sou o cliente Danilo Souza, da empresa SetaDigital com o software de ERP de calçados, estou com duvidas sobre o SETAERP, não responder perguntas que não são relacionadas a esse tema!',
+            'Sou o cliente Danilo Souza, da empresa SetaDigital com o software de ERP de calçados, estou com duvidas sobre o SETAERP, não responder perguntas que não são relacionadas a esse tema obrigatoriamente!',
         messageFrom: MessageFrom.bot,
       ),
     );
   }
 
+  init(BuildContext context) async {
+    if (_isCarregandoTela) {
+      _onPressMsg(context, force: true);
+    }
+
+    _isCarregandoTela = false;
+  }
+
   @override
   Widget build(BuildContext context) {
+    init(context);
     bool isDesktop = Responsive.isDesktop(context);
 
     return Scaffold(
@@ -107,25 +117,27 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _onPressMsg(BuildContext context) async {
+  void _onPressMsg(BuildContext context, {bool force = false}) async {
     _inputFN.unfocus();
 
-    if (_inputCtrl.text.isNotEmpty) {
+    if (force || _inputCtrl.text.isNotEmpty) {
       setState(() {
         _isTyping = true;
       });
       final prompt = _inputCtrl.text;
 
-      setState(() {
-        _messages.add(ChatModel(
-          message: prompt,
-          messageFrom: MessageFrom.me,
-        ));
+      if (prompt.isNotEmpty) {
+        setState(() {
+          _messages.add(ChatModel(
+            message: prompt,
+            messageFrom: MessageFrom.me,
+          ));
 
-        _inputCtrl.text = '';
+          _inputCtrl.text = '';
 
-        _scrollDown();
-      });
+          _scrollDown();
+        });
+      }
 
       try {
         final chatRepository = context.read<ChatRepository>();
