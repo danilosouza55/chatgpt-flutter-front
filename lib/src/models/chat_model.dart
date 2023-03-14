@@ -18,8 +18,8 @@ class ChatModel {
 
   factory ChatModel.fromMap(Map<String, dynamic> map) {
     return ChatModel(
-      message: (map['choices'][0]['text'] as String).replaceAll("\n", ''),
-      messageFrom: MessageFrom.bot,
+      message: (map['message']['content'] as String).replaceAll("\n", ''),
+      messageFrom: MessageFrom.assit,
     );
   }
 
@@ -29,4 +29,4 @@ class ChatModel {
       ChatModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
-enum MessageFrom { me, bot }
+enum MessageFrom { me, bot, assit }

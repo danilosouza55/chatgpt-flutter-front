@@ -26,24 +26,29 @@ class ListMessages extends StatelessWidget {
       controller: _scrollCtrl,
       itemCount: _messages.length,
       itemBuilder: (_, int index) {
-        return Row(
-          children: [
-            if (_messages[index].messageFrom == MessageFrom.me) const Spacer(),
-            // Messagem
-            Container(
-              margin: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-              width: MediaQuery.of(context).size.width * 0.6,
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: getColorContainer(_messages[index], context),
-                borderRadius: BorderRadius.circular(12),
+        final menssage = _messages[index];
+
+        return Visibility(
+          visible: !(menssage.messageFrom == MessageFrom.bot),
+          child: Row(
+            children: [
+              if (menssage.messageFrom == MessageFrom.me) const Spacer(),
+              // Messagem
+              Container(
+                margin: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                width: MediaQuery.of(context).size.width * 0.6,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: getColorContainer(_messages[index], context),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  menssage.message,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               ),
-              child: Text(
-                _messages[index].message,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

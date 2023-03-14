@@ -36,6 +36,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _messages.add(
+      ChatModel(
+        message:
+            'Sou Danilo Araújo de Souza e vou perguntar sobre informações do SETAERP da SetaDigital, não deixei perguntas que não são relacionadas ao SetaERP.',
+        messageFrom: MessageFrom.bot,
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     bool isDesktop = Responsive.isDesktop(context);
 
@@ -117,7 +130,7 @@ class _HomePageState extends State<HomePage> {
       try {
         final chatRepository = context.read<ChatRepository>();
 
-        final chatResponse = await chatRepository.promptMessage(prompt);
+        final chatResponse = await chatRepository.promptMessage(_messages);
 
         setState(() {
           _messages.add(chatResponse);
@@ -133,6 +146,8 @@ class _HomePageState extends State<HomePage> {
         _showError(context);
       }
     }
+
+    _inputFN.requestFocus();
   }
 
   void _showError(BuildContext context) {

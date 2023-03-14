@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:chatgpt_front/src/core/exceptions/repository_exception.dart';
@@ -17,22 +17,26 @@ class ChatRepositoryImpl implements ChatRepository {
   }) : _dio = dio;
 
   @override
-  Future<ChatModel> promptMessage(String prompt) async {
+  Future<ChatModel> promptMessage(List<ChatModel> prompt) async {
     try {
       final response = await _dio.auth().post(
-        '/completions',
+        '/chat/completions',
         data: {
-          'model': 'text-davinci-003',
-          'prompt': prompt,
-          'temperature': 0,
-          'max_tokens': 1000,
-          'top_p': 1,
-          'frequency_penalty': 0.0,
-          'presence_penalty': 0.0
+          'model': 'gpt-3.5-turbo',
+          'messages': prompt
+              .map((chat) => {
+                    "role": chat.messageFrom == MessageFrom.me
+                        ? 'user'
+                        : chat.messageFrom == MessageFrom.bot
+                            ? 'system'
+                            : 'assistant',
+                    "content": chat.message,
+                  })
+              .toList(),
         },
       );
 
-      final data = ChatModel.fromMap(response.data);
+      final data = ChatModel.fromMap(response.data['choices'][0]);
 
       return data;
     } on DioError catch (e, s) {
