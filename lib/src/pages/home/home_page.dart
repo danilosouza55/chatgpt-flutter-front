@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     _messages.add(
       ChatModel(
         message:
-            'Sou Danilo Araújo de Souza e vou perguntar sobre informações do SETAERP da SetaDigital, não deixei perguntas que não são relacionadas ao SetaERP.',
+            'Sou o cliente Danilo Souza, da empresa SetaDigital com o software de ERP de calçados, estou com duvidas sobre o SETAERP, não responder perguntas que não são relacionadas a esse tema!',
         messageFrom: MessageFrom.bot,
       ),
     );
