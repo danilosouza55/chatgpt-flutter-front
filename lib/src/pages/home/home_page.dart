@@ -43,15 +43,29 @@ class _HomePageState extends State<HomePage> {
     _messages.add(
       ChatModel(
         message:
-            'Sou o cliente Danilo Souza, da empresa SetaDigital com o software de ERP de calçados, estou com duvidas sobre o SETAERP, não responder perguntas que não são relacionadas a esse tema obrigatoriamente!',
+            'Me chamo Danilo Souza, e sou cliente do software SETAERP, REPONDA que NÃO ESTÁ PERMITIDA a falar sobre outro tema que não seja sobre o software SETAERP SOMENTE QUANDO FOR PRECISO!',
         messageFrom: MessageFrom.bot,
+      ),
+    );
+    _messages.add(
+      ChatModel(
+        message:
+            'Se apresente para o cliente que está no chat como SetaChat do SETAERP.',
+        messageFrom: MessageFrom.bot,
+      ),
+    );
+    _messages.add(
+      ChatModel(
+        message:
+            'Olá Danilo, sou o SetaChat, como posso ajudá-lo hoje com o nosso software?',
+        messageFrom: MessageFrom.assit,
       ),
     );
   }
 
   init(BuildContext context) async {
     if (_isCarregandoTela) {
-      _onPressMsg(context, force: true);
+      //_onPressMsg(context, force: true);
     }
 
     _isCarregandoTela = false;

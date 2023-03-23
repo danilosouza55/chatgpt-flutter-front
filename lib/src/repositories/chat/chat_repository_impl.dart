@@ -10,6 +10,7 @@ import './chat_repository.dart';
 
 class ChatRepositoryImpl implements ChatRepository {
   final CustomDio _dio;
+  final String palavrasChaves = ';PALAVRA CHAVE: SOFTWARE SETAERP';
 
   ChatRepositoryImpl({
     required CustomDio dio,
@@ -22,6 +23,10 @@ class ChatRepositoryImpl implements ChatRepository {
         '/chat/completions',
         data: {
           'model': 'gpt-3.5-turbo',
+          'max_tokens': 600,
+          "temperature": 0.7,
+          "top_p": 1,
+          "n": 1,
           'messages': prompt
               .map((chat) => {
                     "role": chat.messageFrom == MessageFrom.me
@@ -29,7 +34,9 @@ class ChatRepositoryImpl implements ChatRepository {
                         : chat.messageFrom == MessageFrom.bot
                             ? 'system'
                             : 'assistant',
-                    "content": chat.message,
+                    "content": chat.messageFrom == MessageFrom.me
+                        ? '${chat.message} $palavrasChaves'
+                        : chat.message,
                   })
               .toList(),
         },
@@ -50,25 +57,3 @@ class ChatRepositoryImpl implements ChatRepository {
     }
   }
 }
-
-
-// const url = "https://api.openai.com/v1/completions";
-
-//       final response = await _dio.post(url,
-//           data: {
-//             'model': 'text-davinci-003',
-//             'prompt': prompt,
-//             'temperature': 0,
-//             'max_tokens': 1000,
-//             'top_p': 1,
-//             'frequency_penalty': 0.0,
-//             'presence_penalty': 0.0
-//           },
-//           options: Options(headers: {
-//             'Authorization': 'Bearer ${AppConfig.getOpenAIAPIKey}',
-//           }));
-
-//       return response.data['choices'][0]['text'];
-//     } catch (_) {
-//       return 'Ocorreu um erro! Por favor, tente novamente';
-//     }

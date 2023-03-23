@@ -42,7 +42,7 @@ class ListMessages extends StatelessWidget {
                   color: getColorContainer(_messages[index], context),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Text(
+                child: SelectableText(
                   menssage.message,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
