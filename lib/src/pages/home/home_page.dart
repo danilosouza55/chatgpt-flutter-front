@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
     _messages.add(
       ChatModel(
         message:
-            'Olá Danilo, sou o SetaChat, como posso ajudá-lo hoje com o nosso software?',
+            'Olá Danilo, sou o SetaBot, como posso ajudá-lo hoje com o nosso software SetaERP?',
         messageFrom: MessageFrom.assit,
       ),
     );
