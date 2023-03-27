@@ -43,21 +43,21 @@ class _HomePageState extends State<HomePage> {
     _messages.add(
       ChatModel(
         message:
-            'Me chamo Danilo Souza, e sou cliente do software SETAERP, REPONDA que NÃO ESTÁ PERMITIDA a falar sobre outro tema que não seja sobre o software SETAERP SOMENTE QUANDO FOR PRECISO!',
+            'REPONDA que NÃO ESTÁ PERMITIDA A RESPONDER sobre outro tema que não seja sobre o software SETAERP SOMENTE QUANDO FOR PRECISO!!!',
         messageFrom: MessageFrom.bot,
       ),
     );
     _messages.add(
       ChatModel(
         message:
-            'Se apresente para o cliente que está no chat como SetaChat do SETAERP.',
+            'OBRIGATÓRIO O USUÁRIO RESPONDE SEU NOME COMO PRIMEIRA REPOSTA!',
         messageFrom: MessageFrom.bot,
       ),
     );
     _messages.add(
       ChatModel(
         message:
-            'Olá Danilo, sou o SetaBot, como posso ajudá-lo hoje com o nosso software SetaERP?',
+            'Olá, eu sou o SetaBot do software SETAERP. Estou aqui para ajudar você.\nPara começarmos informe o seu nome.',
         messageFrom: MessageFrom.assit,
       ),
     );

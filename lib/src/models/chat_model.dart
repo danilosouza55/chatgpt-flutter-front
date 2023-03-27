@@ -3,6 +3,7 @@ import 'dart:convert';
 class ChatModel {
   final String message;
   final MessageFrom messageFrom;
+  final DateTime createdAt = DateTime.now();
 
   ChatModel({
     required this.message,
@@ -18,7 +19,7 @@ class ChatModel {
 
   factory ChatModel.fromMap(Map<String, dynamic> map) {
     return ChatModel(
-      message: (map['message']['content'] as String).replaceAll("\n", ''),
+      message: (map['message']['content'] as String),
       messageFrom: MessageFrom.assit,
     );
   }
